@@ -21,15 +21,62 @@ namespace CommunalServices.Persistance
             {
                 context.Locations.Add(new Location
                 {
-                    Name = "Вінницька область"
+                    Name = "Вінницька область",
+                    Children = new List<Location>
+                    {
+                        new Location
+                        {
+                            Name = "Вінницький район",
+                            Children = new List<Location>
+                            {
+                                new Location
+                                {
+                                    Name = "Вінниця"
+                                }
+                            }
+                        },
+                        new Location
+                        {
+                            Name = "Жмеринський район",
+                            Children = new List<Location>
+                            {
+                                new Location
+                                {
+                                    Name = "Жмеринка"
+                                }
+                            }
+                        }
+                    }
                 });
+                
                 context.Locations.Add(new Location
                 {
-                    Name = "Київська область"
-                });
-                context.Locations.Add(new Location
-                {
-                    Name = "Одеська область"
+                    Name = "Одеська область",
+                    Children = new List<Location>
+                    {
+                        new Location
+                        {
+                            Name = "Одеський район",
+                            Children = new List<Location>
+                            {
+                                new Location
+                                {
+                                    Name = "Одеса"
+                                }
+                            }
+                        },
+                        new Location
+                        {
+                            Name = "Білгород-Дністровський район",
+                            Children = new List<Location>
+                            {
+                                new Location
+                                {
+                                    Name = "Білгород-Дністровський"
+                                }
+                            }
+                        }
+                    }
                 });
                 context.SaveChanges();
             }
