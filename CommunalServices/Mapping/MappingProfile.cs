@@ -13,6 +13,7 @@ namespace CommunalServices.Mapping
         public MappingProfile()
         {
             CreateMap<Location, LocationResource>();
+            CreateMap<Utility, UtilityResource>();
         }
     }
 }
