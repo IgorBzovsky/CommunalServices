@@ -1,4 +1,5 @@
 ﻿using CommunalServices.Core.Models;
+using CommunalServices.Persistance.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Persistance
@@ -10,6 +11,11 @@ namespace CommunalServices.Persistance
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration<ProvidedUtility>(new ProvidedUtilityConfiguration());
         }
     }
 }
