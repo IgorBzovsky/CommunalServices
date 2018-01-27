@@ -25,8 +25,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\provider-form\provider-form.component.ts" />
+    <None Remove="ClientApp\app\services\location.service.ts" />
+    <None Remove="ClientApp\app\services\utility.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommunalServices.Core\CommunalServices.Core.csproj" />
     <ProjectReference Include="..\CommunalServices.Data\CommunalServices.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\provider-form\provider-form.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\location.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\utility.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

@@ -1,0 +1,20 @@
+﻿<h1>Нове підприємство</h1>
+<form>
+    <div class="form-group"></div>
+    <label for="name">Назва</label>
+    <input type="text" name="name" value="" class="form-control" />
+    <div class="form-group">
+        <label for="location">Регіон</label>
+        <select name="location" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let r of regions" value="{{ r.id }}">{{ r.name }}</option>
+        </select>
+    </div>
+    <h2>Типи послуг</h2>
+    <div *ngFor="let u of utilities" class="checkbox">
+        <label for="utility{{ u.id }}">
+            <input type="checkbox" id="utility{{ u.id }}" />{{ u.name }}
+        </label>
+    </div>
+    <button class="btn btn-primary">Зберегти</button>
+</form>

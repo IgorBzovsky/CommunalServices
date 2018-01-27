@@ -24,9 +24,17 @@ namespace CommunalServices.Controllers
         public async Task<IEnumerable<LocationResource>> GetLocations()
         {
             var locations = await _context.Locations
-                .Include(x => x.Children).ToListAsync<Location>();
+                .Include(x => x.Children).ToListAsync();
             var parentLocations = locations.Where(l => l.ParentId == null);
             return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationResource>>(parentLocations);
+        }
+
+        [HttpGet("/api/regions")]
+        public async Task<IEnumerable<LocationResource>> GetRegions()
+        {
+            var regions = await _context.Locations
+                .Where(x => x.ParentId == null).ToListAsync();
+            return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationResource>>(regions);
         }
     }
 }
