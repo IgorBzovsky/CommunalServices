@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace CommunalServices.Migrations
+namespace CommunalServices.Data.Migrations
 {
     public partial class Initial : Migration
     {
@@ -43,6 +43,26 @@ namespace CommunalServices.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Providers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LocationId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Providers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Providers_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Utilities",
                 columns: table => new
                 {
@@ -62,10 +82,44 @@ namespace CommunalServices.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProvidedUtility",
+                columns: table => new
+                {
+                    ProviderId = table.Column<int>(nullable: false),
+                    UtilityId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProvidedUtility", x => new { x.ProviderId, x.UtilityId });
+                    table.ForeignKey(
+                        name: "FK_ProvidedUtility_Providers_ProviderId",
+                        column: x => x.ProviderId,
+                        principalTable: "Providers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProvidedUtility_Utilities_UtilityId",
+                        column: x => x.UtilityId,
+                        principalTable: "Utilities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Locations_ParentId",
                 table: "Locations",
                 column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProvidedUtility_UtilityId",
+                table: "ProvidedUtility",
+                column: "UtilityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Providers_LocationId",
+                table: "Providers",
+                column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Utilities_MeasureUnitId",
@@ -76,10 +130,16 @@ namespace CommunalServices.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "ProvidedUtility");
+
+            migrationBuilder.DropTable(
+                name: "Providers");
 
             migrationBuilder.DropTable(
                 name: "Utilities");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
 
             migrationBuilder.DropTable(
                 name: "MeasureUnit");

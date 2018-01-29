@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CommunalServices.Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly DbContext context;
-        public Repository(DbContext context)
+        protected readonly ApplicationDbContext context;
+        public Repository(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -25,19 +26,19 @@ namespace CommunalServices.Data.Repositories
             context.Set<TEntity>().AddRange(entities);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return context.Set<TEntity>().Where(predicate);
+            return await context.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
-        public TEntity Get(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
-            return context.Set<TEntity>().Find(id);
+            return await context.Set<TEntity>().FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return context.Set<TEntity>().ToList();
+            return await context.Set<TEntity>().ToListAsync();
         }
 
         public void Remove(TEntity entity)

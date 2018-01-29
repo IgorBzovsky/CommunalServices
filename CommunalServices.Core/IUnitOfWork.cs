@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CommunalServices.Core
 {
@@ -9,6 +10,7 @@ namespace CommunalServices.Core
     {
         IUtilityRepository Utilities { get; }
         ILocationRepository Locations { get; }
-        void Complete();
+        IProviderRepository Providers { get; }
+        Task CompleteAsync();
     }
 }

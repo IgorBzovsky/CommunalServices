@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using CommunalServices.Persistance;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using CommunalServices.Data;
+using CommunalServices.Core;
 
 namespace CommunalServices
 {
@@ -28,7 +29,9 @@ namespace CommunalServices
         {
             services.AddAutoMapper();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("CommunalServices.Data")));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc();
         }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CommunalServices.Core.Repositories
 {
-    public interface ILocationRepository : IRepository<Location>
+    public interface IProviderRepository : IRepository<Provider>
     {
-        Task<IEnumerable<Location>> GetLocationsIncludeChildrenAsync();
+        Task<Provider> GetProviderAsync(int id, bool includeRelated = true);
     }
 }

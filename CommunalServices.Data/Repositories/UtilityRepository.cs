@@ -9,7 +9,7 @@ namespace CommunalServices.Data.Repositories
 {
     public class UtilityRepository : Repository<Utility>, IUtilityRepository
     {
-        public UtilityRepository(DbContext context) : base(context)
+        public UtilityRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

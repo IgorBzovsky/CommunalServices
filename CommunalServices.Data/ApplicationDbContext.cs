@@ -1,8 +1,11 @@
 ﻿using CommunalServices.Core.Models;
-using CommunalServices.Persistance.EntityConfigurations;
+using CommunalServices.Data.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace CommunalServices.Persistance
+namespace CommunalServices.Data
 {
     public class ApplicationDbContext : DbContext
     {

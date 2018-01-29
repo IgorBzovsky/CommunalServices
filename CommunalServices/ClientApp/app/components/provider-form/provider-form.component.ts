@@ -9,6 +9,7 @@ import { UtilityService } from "../../services/utility.service";
 export class ProviderFormComponent implements OnInit {
     regions: any[];
     utilities: any[];
+    provider: {}
 
     constructor(private locationService: LocationService,
         private utilityService: UtilityService) { }

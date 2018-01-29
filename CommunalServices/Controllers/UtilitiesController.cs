@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CommunalServices.Controllers.Resources;
+using CommunalServices.Core;
 using CommunalServices.Core.Models;
-using CommunalServices.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,18 +14,18 @@ namespace CommunalServices.Controllers
     [Route("/api/[controller]")]
     public class UtilitiesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UtilitiesController(ApplicationDbContext context, IMapper mapper)
+        public UtilitiesController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         
         public async Task<IEnumerable<KeyValuePairResource>> GetUtilities()
         {
-            var utilities = await _context.Utilities.ToListAsync();
+            var utilities = await _unitOfWork.Utilities.GetAllAsync();
             return _mapper.Map<IEnumerable<Utility>, IEnumerable<KeyValuePairResource>>(utilities);
         }
     }

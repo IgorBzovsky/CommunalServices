@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace CommunalServices.Persistance
+namespace CommunalServices.Data
 {
     public static class DbInitializer
     {
@@ -48,7 +48,7 @@ namespace CommunalServices.Persistance
                         }
                     }
                 });
-                
+
                 context.Locations.Add(new Location
                 {
                     Name = "Одеська область",

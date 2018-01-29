@@ -5,25 +5,28 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CommunalServices.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
-        public UnitOfWork(DbContext context)
+        private readonly ApplicationDbContext _context;
+        public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Utilities = new UtilityRepository(_context);
             Locations = new LocationRepository(_context);
+            Providers = new ProviderRepository(_context);
         }
 
         public IUtilityRepository Utilities { get; private set; }
         public ILocationRepository Locations { get; private set; }
+        public IProviderRepository Providers { get; private set; }
 
-        public void Complete()
+        public async Task CompleteAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

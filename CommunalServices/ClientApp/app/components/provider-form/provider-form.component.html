@@ -5,7 +5,7 @@
     <input type="text" name="name" value="" class="form-control" />
     <div class="form-group">
         <label for="location">Регіон</label>
-        <select name="location" class="form-control">
+        <select name="location" class="form-control" [(ngModel)]="provider.locationId">
             <option value=""></option>
             <option *ngFor="let r of regions" value="{{ r.id }}">{{ r.name }}</option>
         </select>

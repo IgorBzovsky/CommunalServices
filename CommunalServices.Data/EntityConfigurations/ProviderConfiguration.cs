@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CommunalServices.Core.Models;
 using Microsoft.EntityFrameworkCore;
-using CommunalServices.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CommunalServices.Persistance.EntityConfigurations
+namespace CommunalServices.Data.EntityConfigurations
 {
     public class ProviderConfiguration : IEntityTypeConfiguration<Provider>
     {
