@@ -23,10 +23,10 @@ namespace CommunalServices.Controllers
             _mapper = mapper;
         }
         
-        public async Task<IEnumerable<UtilityResource>> GetUtilities()
+        public async Task<IEnumerable<KeyValuePairResource>> GetUtilities()
         {
             var utilities = await _context.Utilities.ToListAsync();
-            return _mapper.Map<IEnumerable<Utility>, IEnumerable<UtilityResource>>(utilities);
+            return _mapper.Map<IEnumerable<Utility>, IEnumerable<KeyValuePairResource>>(utilities);
         }
     }
 }

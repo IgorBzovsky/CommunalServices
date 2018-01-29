@@ -13,8 +13,8 @@ namespace CommunalServices.Mapping
         public MappingProfile()
         {
             //Domain to API resource
-            CreateMap<Location, LocationResource>();
-            CreateMap<Utility, UtilityResource>();
+            CreateMap<Location, KeyValuePairResource>();
+            CreateMap<Utility, KeyValuePairResource>();
             CreateMap<Provider, SaveProviderResource>()
                 .ForMember(pr => pr.ProvidedUtilities,
                 opt => opt.MapFrom(p => p.ProvidedUtilities
@@ -22,7 +22,7 @@ namespace CommunalServices.Mapping
             CreateMap<Provider, ProviderResource>()
                 .ForMember(pr => pr.ProvidedUtilities,
                 opt => opt.MapFrom(p => p.ProvidedUtilities
-                .Select(x => new UtilityResource { Id = x.Utility.Id, Name = x.Utility.Name})));
+                .Select(x => new KeyValuePairResource { Id = x.Utility.Id, Name = x.Utility.Name})));
 
             //API resource to domain
             CreateMap<SaveProviderResource, Provider>()

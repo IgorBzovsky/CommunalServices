@@ -10,12 +10,12 @@ namespace CommunalServices.Controllers.Resources
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public LocationResource Location { get; set; }
-        public ICollection<UtilityResource> ProvidedUtilities { get; set; }
+        public KeyValuePairResource Location { get; set; }
+        public ICollection<KeyValuePairResource> ProvidedUtilities { get; set; }
 
         public ProviderResource()
         {
-            ProvidedUtilities = new Collection<UtilityResource>();
+            ProvidedUtilities = new Collection<KeyValuePairResource>();
         }
     }
 }

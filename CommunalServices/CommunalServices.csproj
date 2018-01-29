@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Resources\LocationResource.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\app\components\provider-form\provider-form.component.ts" />
     <None Remove="ClientApp\app\services\location.service.ts" />
     <None Remove="ClientApp\app\services\utility.service.ts" />

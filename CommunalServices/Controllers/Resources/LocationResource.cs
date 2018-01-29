@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommunalServices.Controllers.Resources
 {
-    public class LocationResource
+    public class KeyValuePairResource
     {
         public int Id { get; set; }
         public string Name { get; set; }
