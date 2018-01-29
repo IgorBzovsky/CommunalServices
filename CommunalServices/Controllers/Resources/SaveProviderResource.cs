@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace CommunalServices.Controllers.Resources
 {
-    public class LocationResource
+    public class SaveProviderResource
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int LocationId { get; set; }
+        public ICollection<int> ProvidedUtilities { get; set; }
+
+        public SaveProviderResource()
+        {
+            ProvidedUtilities = new Collection<int>();
+        }
     }
 }

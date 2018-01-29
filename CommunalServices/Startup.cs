@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CommunalServices.Persistance;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace CommunalServices
 {

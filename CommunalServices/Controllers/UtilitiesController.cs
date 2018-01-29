@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CommunalServices.Controllers
 {
+    [Route("/api/[controller]")]
     public class UtilitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,8 +22,7 @@ namespace CommunalServices.Controllers
             _context = context;
             _mapper = mapper;
         }
-
-        [HttpGet("/api/utilities")]
+        
         public async Task<IEnumerable<UtilityResource>> GetUtilities()
         {
             var utilities = await _context.Utilities.ToListAsync();

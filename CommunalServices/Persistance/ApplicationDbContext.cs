@@ -8,6 +8,7 @@ namespace CommunalServices.Persistance
     {
         public DbSet<Location> Locations { get; set; }
         public DbSet<Utility> Utilities { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -15,7 +16,8 @@ namespace CommunalServices.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration<ProvidedUtility>(new ProvidedUtilityConfiguration());
+            modelBuilder.ApplyConfiguration(new ProvidedUtilityConfiguration());
+            modelBuilder.ApplyConfiguration(new ProviderConfiguration());
         }
     }
 }
