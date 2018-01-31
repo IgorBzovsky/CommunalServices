@@ -11,8 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ProviderFormComponent } from './components/provider-form/provider-form.component';
 
-import { LocationService } from "./services/location.service";
-import { UtilityService } from "./services/utility.service";
+import { ProviderService } from "./services/provider.service";
 
 @NgModule({
     declarations: [
@@ -37,8 +36,7 @@ import { UtilityService } from "./services/utility.service";
         ])
     ],
     providers: [
-        LocationService,
-        UtilityService
+        ProviderService
     ]
 })
 export class AppModuleShared {

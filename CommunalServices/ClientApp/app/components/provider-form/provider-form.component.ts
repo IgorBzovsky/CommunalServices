@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { LocationService } from "../../services/location.service";
-import { UtilityService } from "../../services/utility.service";
+import { ProviderService } from "../../services/provider.service";
 
 @Component({
     selector: 'my-component',
@@ -9,13 +8,28 @@ import { UtilityService } from "../../services/utility.service";
 export class ProviderFormComponent implements OnInit {
     regions: any[];
     utilities: any[];
-    provider: {}
+    provider: any = {
+        providedUtilities: []
+    };
 
-    constructor(private locationService: LocationService,
-        private utilityService: UtilityService) { }
+    constructor(private providerService: ProviderService) { }
 
     ngOnInit() {
-        this.locationService.getRegions().subscribe(regions => this.regions = regions);
-        this.utilityService.getUtilities().subscribe(utilities => this.utilities = utilities);
+        this.providerService.getRegions().subscribe(regions => this.regions = regions);
+        this.providerService.getUtilities().subscribe(utilities => this.utilities = utilities);
+    }
+
+    onUtilityToggle(utilityId: number, $event: any) {
+        if ($event.target.checked)
+            this.provider.providedUtilities.push(utilityId);
+        else {
+            var index = this.provider.providedUtilities.indexOf(utilityId);
+            this.provider.providedUtilities.splice(index, 1);
+        }
+    }
+
+    submit() {
+        this.providerService.create(this.provider)
+            .subscribe(x => console.log(x));
     }
 }
